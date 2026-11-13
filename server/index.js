@@ -343,9 +343,12 @@ app.use((err, req, res, next) => {
   return res.status(500).json({ error: { code: 'server_error', message: 'Unexpected server error.' } });
 });
 
-const server = app.listen(config.port, () => {
+// Bind all interfaces so the app is reachable behind Render's (or any) proxy.
+const HOST = process.env.HOST || '0.0.0.0';
+
+const server = app.listen(config.port, HOST, () => {
   const mode = isLiveMode() ? `live AI (${config.groq.model})` : 'DEMO MODE (no GROQ_API_KEY)';
-  console.log(`\n  HumanLoop server  ·  http://localhost:${config.port}`);
+  console.log(`\n  HumanLoop server  ·  http://${HOST === '0.0.0.0' ? 'localhost' : HOST}:${config.port}`);
   console.log(`  Mode: ${mode}`);
   if (!isLiveMode()) console.log('  Add GROQ_API_KEY to .env to enable live AI.\n');
 });
