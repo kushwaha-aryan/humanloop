@@ -1,0 +1,31 @@
+{
+  "name": "humanloop",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "HumanLoop — an AI companion that turns life's chaos into your next clear action.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "concurrently -n server,web -c green,cyan \"npm:dev:server\" \"npm:dev:web\"",
+    "dev:server": "node --watch server/index.js",
+    "dev:web": "vite",
+    "build": "vite build",
+    "start": "node server/index.js",
+    "preview": "npm run build && npm start",
+    "test": "node --test server/tests/validate.test.js server/tests/demo.test.js server/tests/helpers.test.js",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.22.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "concurrently": "^9.2.1",
+    "vite": "^6.4.6"
+  }
+}

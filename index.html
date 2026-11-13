@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0A0B09" />
+    <meta
+      name="description"
+      content="HumanLoop turns life's chaos into your next clear action. An AI clarity engine, action planner, focus timer, and reflection companion."
+    />
+    <title>HumanLoop — Turn chaos into your next clear action</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script>
+      // Apply the saved theme before first paint to avoid a flash.
+      try {
+        var raw = localStorage.getItem('humanloop.state.v1');
+        var theme = raw ? (JSON.parse(raw).profile || {}).theme : 'dark';
+        document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+      } catch (e) {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
